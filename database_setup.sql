@@ -1,11 +1,13 @@
+-- drop database if exists nyc_taxi_data;
+-- CREATE DATABASE nyc_taxi_data;
+-- \c nyc_taxi_data;
+-- /*
 
-/*
+drop table if exists trips;
+drop table if exists spatial_zones;
+drop table if exists zones;
 
-drop table if exitst trips;
-drop table if exist spatial_zones;
-drop table if exist zones;
-
-*/
+-- */
 
 -- Create Dimension table that store mapping from ID to neighborhood (zones)
 
@@ -41,7 +43,7 @@ create table trips (
     tip_amount numeric(10,2),
     tolls_amount numeric(10,2),
     improvement_surcharge numeric(10,2),
-    total_amount numeric(10,2)
+    total_amount numeric(10,2),
     congestion_surcharge numeric(10,2),
 
     -- these columns are for derived features, which will be calculated by our python script
@@ -51,7 +53,7 @@ create table trips (
 );
 
 -- performance indexing( for faster query on trip data in frontend)
-create index idx_pickup_time on trips(pickup_datetime);
+create index idx_pickup_time on trips (pickup_datetime);
 create index idx_pickup_location on trips(pu_location_id);
 create index idx_dropoff_location on trips(do_location_id);
 create index idx_total_amount on trips(total_amount);
