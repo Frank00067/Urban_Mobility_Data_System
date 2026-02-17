@@ -30,7 +30,7 @@ def load_spatial_data():
     # extract locationID and the geometry(the shape)
     spatial_data = []
     for _, row in gdf.iterrows():
-        spatioal_data.append({
+        spatial_data.append({
             'location_id': int(row['LocationID']),
             'geometry': json.dumps(row['geometry'].__geo_interface__)
         })
