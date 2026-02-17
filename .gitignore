@@ -1,0 +1,36 @@
+.vscode
+my_env
+unique_int/
+arrays.py
+linked_lists.py
+lists.py
+matrix_test.py
+
+# python env
+bin/
+lib/
+lib64
+pyvenv.cfg
+share/
+
+# IDE files
+.idea/
+*.swp
+*.swo
+*.vscode
+
+# Python files
+venv/
+
+__pycache__/
+*.pyc
+
+# Server IP address
+*.svip
+
+# Environment variables
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
