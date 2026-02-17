@@ -9,10 +9,11 @@ matrix_test.py
 # python env
 bin/
 lib/
+include/
 lib64
 pyvenv.cfg
 share/
-
+summative/
 # IDE files
 .idea/
 *.swp
@@ -24,7 +25,7 @@ venv/
 
 __pycache__/
 *.pyc
-
+*.cfg
 # Server IP address
 *.svip
 

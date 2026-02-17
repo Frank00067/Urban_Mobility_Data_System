@@ -1,13 +1,13 @@
--- drop database if exists nyc_taxi_data;
--- CREATE DATABASE nyc_taxi_data;
--- \c nyc_taxi_data;
--- /*
+drop database if exists nyc_taxi_data;
+CREATE DATABASE nyc_taxi_data;
+\c nyc_taxi_data;
+/*
 
 drop table if exists trips;
 drop table if exists spatial_zones;
 drop table if exists zones;
 
--- */
+*/
 
 -- Create Dimension table that store mapping from ID to neighborhood (zones)
 
