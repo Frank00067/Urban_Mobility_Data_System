@@ -1,13 +1,13 @@
 drop database if exists nyc_taxi_data;
 CREATE DATABASE nyc_taxi_data;
 \c nyc_taxi_data;
-/*
+
 
 drop table if exists trips;
 drop table if exists spatial_zones;
 drop table if exists zones;
 
-*/
+
 
 -- Create Dimension table that store mapping from ID to neighborhood (zones)
 
@@ -20,7 +20,7 @@ create table zones (
 
 -- create the spatial metadata table for storing geoJSON data for map visualization
 create table spatial_zones (
-    location_id integer primary key references zones(location_id), 
+    location_id integer primary key references zones(location_id) on delete cascade, 
     geometry JSONB not null
 );
 
@@ -34,8 +34,8 @@ create table trips (
     trip_distance numeric(10,2),
     rate_code integer,
     store_and_fwd_flag char(1),
-    pu_location_id integer references zones(location_id),
-    do_location_id integer references zones(location_id),
+    pu_location_id integer references zones(location_id) on delete cascade,
+    do_location_id integer references zones(location_id) on delete cascade,
     payment_type integer,
     fare_amount numeric(10,2),
     extra numeric(10,2),
