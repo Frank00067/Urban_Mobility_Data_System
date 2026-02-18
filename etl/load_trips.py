@@ -17,7 +17,7 @@ def clear_trips_table():
 
 def load_trips_data():
     print("Reading trip data from CSV...")
-    file_path = 'data/'yellow_tripdata_2019-01.csv'
+    file_path = 'data/yellow_tripdata_2019-01.csv'
     print(f"Starting ETL process for file: {file_path}")
 
     # read the CSV file in chunks to handle large files efficiently
@@ -46,12 +46,13 @@ def load_trips_data():
         """
 
         # trip duration in seconds
-        df['trip_duration_seconds'] = (df['tpep_dropoff_datetime'] - df['tpep_pickup_datetime']).dt.total_seconds()
+        df['trip_duration_seconds'] = (df['tpep_dropoff_datetime'] - df['tpep_pickup_datetime']).dt.total_seconds().astype(int)
         # remove trips with negative or zero duration
         df = df[df['trip_duration_seconds'] > 0]
 
         # average speed in miles per hour
         df['average_speed_mph'] = df['trip_distance'] / (df['trip_duration_seconds'] / 3600)
+        df['average_speed_mph'] = df['average_speed_mph'].replace([np.inf, -np.inf], 0).clip(upper=99999999.99)
 
         # Tip percentage
         # handle cases where fare_amount is zero to avoid division by zero
@@ -60,6 +61,7 @@ def load_trips_data():
             (df['tip_amount'] / df['fare_amount']) * 100,
             0
         )
+        df['tip_percentage'] = df['tip_percentage'].clip(upper=999.99)
 
         # --- LOADING DATA INTO DATABASE ---
         print(f"Inserting chunk{i+1} into database...")
@@ -111,4 +113,4 @@ if __name__ == "__main__":
         load_trips_data()
         print("done! Trip data loaded and features calculated.")
     except Exception as e:
-        print(f"Error during ETL process: {e}")
+        print(f"Error during ETL process!")
