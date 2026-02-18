@@ -54,6 +54,69 @@ def get_zones():
         'features': features
     })
 
+
+# api endpoint to return the top 10 bsiest pickup zones with names and boroughs
+@app.route('/api/top-locations', methods=['GET'])
+def get_top_locations():
+    query = text("""
+            SELECT
+                z.zone,
+                z.borough,
+                COUNT(*) AS trip_count
+            FROM trips t
+            JOIN zones z ON t.pu_location_id = z.location_id
+            GROUP BY z.zone, z.borough
+            ORDER BY trip_count DESC
+            LIMIT 10;
+        """)
+
+    with engine.connect() as conn:
+        result = conn.execute(query).fetchall()
+
+    # format the results
+    top_ten = []
+    for row in result:
+        top_ten.append({
+            'zone': row[0],
+            'borough': row[1],
+            'trip_count': row[2]
+        })
+
+    return jsonify(top_ten)
+
+
+# Trips per day(jan 1 to jan 31)
+@app.route('/api/trends', methods=['GET'])
+def get_trends():
+    query = text("""
+        select
+            date(pinkup_datetime) as trip_date,
+            count(*) as trip_count
+        from trips
+        goup by trip_date
+        order by trip_date;
+    """)
+    with engine.connect() as conn:
+        result = conn.execute(query).fetchall()
+    trends = []
+    for row in result:
+        trends.append({
+            "date": row[0].strftime('%Y-%m-%d'),
+            "trip_count": row[1]
+        })
+    return jsonify(trends)
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
     print("Starting Flask API server...")
     app.run(debug=True, port=5000)
