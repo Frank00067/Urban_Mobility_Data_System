@@ -9,6 +9,7 @@ lib64
 pyvenv.cfg
 share/
 summative/
+
 # IDE files
 .idea/
 *.swp
@@ -21,7 +22,8 @@ my_env
 __pycache__/
 *.pyc
 *.cfg
-# Server IP address
+
+# my server IP address
 *.svip
 
 # Environment variables
@@ -33,3 +35,6 @@ Thumbs.db
 
 # OTHERS
 test_queries/*
+yellow_tripdata_2019-01.csv
+taxi_zones.zip
+taxi_zone_lookup.csv
