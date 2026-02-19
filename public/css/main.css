@@ -1,0 +1,146 @@
+/* Basic modern styling */
+.container {
+  padding: 16px;
+}
+h1,
+.topbar-inner {
+  font-weight: 600;
+}
+.topbar {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 10;
+}
+.topbar-inner {
+  max-width: 1200px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 12px 16px;
+}
+#cards {
+  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+#dashboard-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+#filters-column {
+  position: sticky;
+  top: 60px;
+}
+@media (max-width: 900px) {
+  #dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  #filters-column {
+    position: static;
+  }
+}
+h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+#cards {
+  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+#cards > div {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+form#filters {
+  gap: 12px;
+  align-items: end;
+}
+form#filters > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+input,
+select,
+button {
+  padding: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+}
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+#map {
+  width: 100%;
+  height: 420px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+.table-wrap {
+  max-height: 480px;
+  overflow: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+thead {
+  position: sticky;
+  top: 0;
+  background: #f8fafc;
+  z-index: 1;
+}
+td,
+th {
+  padding: 8px;
+  border-bottom: 1px solid #f1f5f9;
+  text-align: left;
+}
+.table-striped tbody tr:nth-child(odd) {
+  background: #f9fafb;
+}
+tbody tr:hover {
+  background: #eef2ff;
+}
+.col-narrow {
+  width: 90px;
+}
+.col-flag {
+  width: 80px;
+  text-align: center;
+}
+.col-count {
+  width: 90px;
+  text-align: right;
+}
+.col-bool {
+  width: 110px;
+  text-align: center;
+}
+.col-datetime {
+  white-space: nowrap;
+}
+.copy-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  background: #0ea5e9;
+}
